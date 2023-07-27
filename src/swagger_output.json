@@ -1,0 +1,544 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Flyings' Universe API Document",
+    "description": "https://expanded-rider-388403.df.r.appspot.com \r\n The provided API endpoints facilitate various operations in the web application.\r\n They include functionalities such as user authentication, data retrieval, data manipulation and system status checks."
+  },
+  "basePath": "",
+  "tags": [
+    {
+      "name": "User",
+      "description": "User router"
+    },
+    {
+      "name": "Auth",
+      "description": "Auth router"
+    }
+  ],
+  "paths": {
+    "/api/auth/": {
+      "get": {
+        "tags": [
+          "Auth"
+        ],
+        "description": "Get current user infotmation from session",
+        "responses": {
+          "200": {
+            "description": "Current user information",
+            "in": "body",
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CurrentAuth"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/CurrentAuth"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "openId": []
+          }
+        ]
+      }
+    },
+    "/api/auth/verification-email": {
+      "get": {
+        "tags": [
+          "Auth"
+        ],
+        "description": "Send an email to the specified user that asks them to click a link to verify their email address",
+        "responses": {
+          "200": {
+            "description": "Send email success or faith.",
+            "in": "body",
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "accept": {
+                      "type": "boolean",
+                      "example": true
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "accept": {
+                      "type": "boolean",
+                      "example": true
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "openId": []
+          }
+        ]
+      }
+    },
+    "/api/auth/user": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "description": "Only called from auth0 HOOK when new user registed.",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "openId": []
+          }
+        ],
+        "requestBody": {
+          "description": "New user information.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddUserHook"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/user/list": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "description": "Get all users information",
+        "responses": {
+          "200": {
+            "description": "All users information",
+            "in": "body",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AllUser"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/AllUser"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "openId": []
+          }
+        ]
+      }
+    },
+    "/api/user/stat": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "description": "Get users statistics",
+        "responses": {
+          "200": {
+            "description": "users statistics",
+            "in": "body",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Stat"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Stat"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "openId": []
+          }
+        ]
+      }
+    },
+    "/api/user/me": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "description": "Get current user information",
+        "responses": {
+          "200": {
+            "description": "Current user information",
+            "in": "body",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AboutMe"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/AboutMe"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "openId": []
+          }
+        ]
+      }
+    },
+    "/api/user/info": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "description": "Update user",
+        "responses": {
+          "200": {
+            "description": "Current user information",
+            "in": "body",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AboutMe"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/AboutMe"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "openId": []
+          }
+        ],
+        "requestBody": {
+          "description": "The new name",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateName"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/user/password": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "description": "Change the password of an authenticated user.",
+        "responses": {
+          "200": {
+            "description": "Current user information",
+            "in": "body",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseChangePwd"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseChangePwd"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "openId": []
+          }
+        ],
+        "requestBody": {
+          "description": "User password information.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ChangePwd"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "openId": {
+        "type": "openIdConnect",
+        "openIdConnectUrl": "https://dev-robyjnbtu38jww2k.us.auth0.com/.well-known/openid-configuration"
+      }
+    },
+    "schemas": {
+      "Unauthorized": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "example": "Unauthorized"
+          }
+        }
+      },
+      "ChangePwd": {
+        "type": "object",
+        "properties": {
+          "old": {
+            "type": "string",
+            "example": "~o1l2d3!B"
+          },
+          "new": {
+            "type": "string",
+            "example": "~n4e5w6!A"
+          }
+        }
+      },
+      "ResponseChangePwd": {
+        "type": "object",
+        "properties": {
+          "strong": {
+            "type": "boolean",
+            "example": true
+          },
+          "vaild": {
+            "type": "boolean",
+            "example": true
+          },
+          "changed": {
+            "type": "boolean",
+            "example": true
+          }
+        }
+      },
+      "AddUserHook": {
+        "type": "object",
+        "properties": {
+          "user": {
+            "type": "object",
+            "properties": {
+              "email": {
+                "type": "string",
+                "example": "user@example.com"
+              },
+              "password": {
+                "type": "string",
+                "example": "1wsa3@~A2"
+              }
+            },
+            "required": [
+              "email",
+              "password"
+            ]
+          },
+          "hook": {
+            "type": "string",
+            "example": "xxxxxxxx"
+          }
+        },
+        "required": [
+          "user",
+          "hook"
+        ]
+      },
+      "CurrentAuth": {
+        "type": "object",
+        "properties": {
+          "user_id": {
+            "type": "string",
+            "example": "980ujiu87761q66rfa"
+          },
+          "name": {
+            "type": "string",
+            "example": "Flying"
+          },
+          "email": {
+            "type": "string",
+            "example": "flying@123.com"
+          },
+          "email_verified": {
+            "type": "boolean",
+            "example": true
+          },
+          "type": {
+            "type": "string",
+            "example": "auth0|google-oauth2|facebook-oauth2"
+          }
+        }
+      },
+      "UpdateName": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "New Name"
+          }
+        }
+      },
+      "AboutMe": {
+        "type": "object",
+        "properties": {
+          "user_id": {
+            "type": "string",
+            "example": "hK3345678"
+          },
+          "email": {
+            "type": "string",
+            "example": "345@678.com"
+          },
+          "email_verified": {
+            "type": "boolean",
+            "example": false
+          },
+          "created_at": {
+            "type": "string",
+            "example": "2023-07-14T06:20:52.442Z"
+          },
+          "updated_at": {
+            "type": "string",
+            "example": "2023-07-14T06:20:52.442Z"
+          },
+          "picture": {
+            "type": "string",
+            "example": "http://"
+          },
+          "name": {
+            "type": "string",
+            "example": "Star"
+          },
+          "nickname": {
+            "type": "string",
+            "example": "Star"
+          },
+          "last_login": {
+            "type": "string",
+            "example": "2023-07-14T06:20:52.442Z"
+          },
+          "logins_count": {
+            "type": "integer",
+            "format": "int32",
+            "example": 10
+          },
+          "type": {
+            "type": "string",
+            "example": "auth0|google-oauth2|facebook-oauth2"
+          }
+        }
+      },
+      "Stat": {
+        "type": "object",
+        "properties": {
+          "total_user": {
+            "type": "integer",
+            "format": "int32",
+            "example": 1314
+          },
+          "today_active_user": {
+            "type": "integer",
+            "format": "int32",
+            "example": 205
+          },
+          "avg_last_7_active_user": {
+            "type": "integer",
+            "format": "int32",
+            "example": 520
+          }
+        }
+      },
+      "AllUser": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "user_id": {
+              "type": "string",
+              "example": "hK3345678"
+            },
+            "email": {
+              "type": "string",
+              "example": "345@678.com"
+            },
+            "email_verified": {
+              "type": "boolean",
+              "example": false
+            },
+            "username": {
+              "type": "string",
+              "example": "HK Star"
+            },
+            "created_at": {
+              "type": "string",
+              "example": "2023-07-14T06:20:52.442Z"
+            },
+            "updated_at": {
+              "type": "string",
+              "example": "2023-07-14T06:20:52.442Z"
+            },
+            "picture": {
+              "type": "string",
+              "example": "http://"
+            },
+            "name": {
+              "type": "string",
+              "example": "Star"
+            },
+            "nickname": {
+              "type": "string",
+              "example": "Star"
+            },
+            "last_login": {
+              "type": "string",
+              "example": "2023-07-14T06:20:52.442Z"
+            },
+            "logins_count": {
+              "type": "number",
+              "example": 10
+            }
+          }
+        }
+      }
+    }
+  }
+}

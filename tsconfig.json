@@ -1,0 +1,28 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "removeComments": true,
+    "esModuleInterop": true,
+    "target": "es6",
+    "jsx": "react",
+    "noImplicitAny": true,
+    "resolveJsonModule": true,
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "outDir": "dist",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"],
+      "@model/*": ["src/model/*"],
+      "@routes/*": ["./src/routes/*"],
+      "@repo/*": ["src/repo/*"],
+      "@auth0/*": ["src/repo/auth0/*"],
+      "@db/*": ["src/repo/database/*"],
+      "@utils/*": ["./src/utils/*"],
+      "@api/*": ["./src/routes/api/*"],
+      "@mw/*": ["./src/middleware/*"],
+    }
+  },
+  "include": ["src/**/*", ".eslintrc.js", "swagger.mjs"],
+  "exclude": ["node_modules", "**/*.spec.ts", "./tsconfig.json", "./dist"]
+}
