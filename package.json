@@ -6,6 +6,8 @@
     "ts-build": "node swagger.mjs && npx tsc -p .",
     "ts-start": "npx ts-node -r ts-node/register/transpile-only -r tsconfig-paths/register ./src/app.ts",
     "ts-build-dev": "npx cross-env NODE_ENV=dev node swagger.mjs && npx tsc -p .",
+    "ts-build-docker": "npx cross-env NODE_ENV=docker node swagger.mjs && npx tsc -p .",
+    "docker": "npx cross-env NODE_ENV=docker node ./dist/app.js",
     "dev": "npx cross-env NODE_ENV=dev node ./dist/app.js",
     "start": "npx node ./dist/app.js",
     "start-gendoc": "node swagger.mjs"
