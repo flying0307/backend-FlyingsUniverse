@@ -1,4 +1,4 @@
-# Backend Project Name
+# Backend Flyings' Universe
 This is the backend part of Flyings' Universe project, developed with Node.js、Express.js and TypeScript. Our backend uses Express for server management, Sequelize for database operations, and Auth0 for user authentication.
 
 ## Installation and Local Test
