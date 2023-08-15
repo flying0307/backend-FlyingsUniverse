@@ -92,8 +92,12 @@ router.post('/info', RequestLogin, async (req: Request, res: Response, next: Nex
   }] */
   try {
     const data = req.body;
-    const user = await RepoUser.updateInfo(res.locals.user.sub, data.name);
-    res.send(user);
+    if (data.name.length <= 64) {
+      const user = await RepoUser.updateInfo(res.locals.user.sub, data.name);
+      res.send(user);
+    } else {
+      res.send(null);
+    }
   } catch (error) {
     console.error(error);
     next(error);

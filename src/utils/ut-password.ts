@@ -2,6 +2,7 @@ const UtPassword = {
   validatePassword(password: string) {
     const validationResults = {
       length: password.length >= 8,
+      maxLen: password.length <= 64,
       lowerCase: /[a-z]/.test(password),
       upperCase: /[A-Z]/.test(password),
       digit: /\d/.test(password),

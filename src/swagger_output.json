@@ -17,6 +17,16 @@
     }
   ],
   "paths": {
+    "/signup": {
+      "get": {
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
     "/api/auth/": {
       "get": {
         "tags": [
